@@ -1,0 +1,20 @@
+<h1 *ngIf="!data.user; else infoUser">Cargando...</h1>
+<ng-template #infoUser>
+  <h1 mat-dialog-title>Estudiante: {{data.user?.name_user}}</h1>
+  <div mat-dialog-content>
+    <h2>Edad: {{data.user?.age}}, Correo: {{data.user?.email}}</h2>
+    <h3>Grado y Grupo: {{data.grade_and_group}}</h3>
+    <h3>Observacion: {{data.observation}}</h3>
+    <div>
+      <h2>Profesor:</h2>
+      <h3>Nombre: {{data.teacher!.user!.name_user}} Especialidad: {{data.teacher!.specialty}}</h3>
+    </div>
+    <div>
+      <h2>Materias:</h2>
+      <li *ngFor="let subject of data.subjects">{{subject.subject}}</li>
+    </div>
+    <p>Creado en: {{data.user?.createdAt}}</p>
+    <p>Ultima modificación: {{data.user?.updatedAt}}</p>
+  </div>
+
+</ng-template>

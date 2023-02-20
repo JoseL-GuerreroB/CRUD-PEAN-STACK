@@ -1,0 +1,28 @@
+<h1 *ngIf="loading === true; else form">Cargando...</h1>
+<ng-template #form>
+  <form [formGroup]="studentForm" (ngSubmit)="submitForm()">
+    <input type="text" formControlName="name_user" placeholder="Escribe el nombre">
+    <input type="number" formControlName="age" placeholder="Escribe la edad">
+    <input type="email" formControlName="email" placeholder="Escribe el correo">
+    <input type="password" formControlName="password" placeholder="Escribe la contraseña">
+    <input type="text" formControlName="grade_and_group" placeholder="Escribe el grado y grupo">
+    <input type="text" formControlName="observation" placeholder="Escribe la observacion">
+    <select multiple formControlName="subjects">
+      <option *ngFor="let subject of listSubjects" value='{{subject.id}}'>{{subject.subject}}</option>
+    </select>
+    <!-- <mat-form-field appearance="fill"> -->
+    <!-- <mat-label>Favorite food</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let teacher of listTeachers" [value]="teacher.id">
+          {{teacher.user?.name_user}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    <select formControlName="teacherId">
+      <option disabled value="0">Selecciona un profesor</option>
+      <option *ngFor="let teacher of listTeachers" value='{{teacher.id}}'>{{teacher.user?.name_user}}</option>
+    </select>
+    <button type="submit">{{textSubmit}}</button>
+  </form>
+</ng-template>
+<button (click)="getBack()">Regresar</button>
